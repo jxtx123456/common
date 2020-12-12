@@ -44,3 +44,33 @@ dependencies {
     implementation 'com.orhanobut:logger:2.2.0'
 
 }
+
+
+ext {
+    libraryPackaging = 'aar'                                            //上传aar形式的打包文件
+
+    // jcenter
+    bintrayRepo = "jsean-android-common"                               // 你上传的位于bintray中的Repository名称，如果没有创建会有一个叫maven的
+    name = 'lib_common'                                                // 必须和library module的名字相同
+    libraryDesc = 'Android common Library'
+    publishedGroupId = 'com.jsean.lib_common'                // 填写groupId， 一般是包名，比如：com.android.support
+    versionName = '1.0.0'                                               // 版本号，比如：22.2.1
+    websiteUrl = 'https://github.com/jxtx123456/common.git'              // 可以填写github上的库地址.
+    issueTrackerUrl = 'https://github.com/jxtx123456/common/issues'  // 可以填写github库的issue地址.
+    vcsUrl = 'https://github.com/jxtx123456/common.git'              // 可以填写github上库的地址.
+    licenseName = "Apache-2.0"
+    libraryVersionDesc = 'version descriotion'
+
+    // maven
+    artifact = 'lib_common'                                            // 必须和library module的名字相同
+    libraryName = 'lib_common'
+    developerId = 'jsean'
+    developerName = 'jsean'
+    developerEmail = 'liwei_longwei@163.com'
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+
+}
+apply from: 'android-maven-install.gradle'
+apply from: 'android-tasks.gradle'
+apply from: 'bintray.gradle'
