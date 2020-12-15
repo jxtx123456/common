@@ -20,6 +20,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven{url 'https://dl.bintray.com/liweijsean/jsean-android-common'}
     }
     tasks.withType(Javadoc) {
         options.addStringOption('Xdoclint:none', '-quiet')
