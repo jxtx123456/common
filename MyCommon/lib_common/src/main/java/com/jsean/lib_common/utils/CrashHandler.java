@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Environment;
 import android.os.Looper;
+import android.text.TextUtils;
 import android.util.Log;
 
 import java.io.File;
@@ -59,11 +60,13 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         return mInstance;
     }
 
-    public void init(Context context) {
+    String mLoaclPath;//本地保存的位置
+    public void init(Context context,String loaclPath) {
         mContext = context;
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
         //设置该CrashHandler为系统默认的
         Thread.setDefaultUncaughtExceptionHandler(this);
+        mLoaclPath=loaclPath;
     }
 
     /**
@@ -194,6 +197,9 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
                 //todo
                 String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/rwp/crash/";
+                if (!TextUtils.isEmpty(mLoaclPath)){
+                    path=mLoaclPath;
+                }
                 File dir = new File(path);
                 if (!dir.exists()) {
                     dir.mkdirs();
